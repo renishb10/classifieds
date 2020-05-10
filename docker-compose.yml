@@ -2,6 +2,10 @@ version: "3"
 services: 
   listings-service:
     build: "./listings-service"
+    environment:
+      - DB_URI=mysql://root:password@listings-service-db/db?charset=UTF8
+    ports:
+      - 0.0.0.0:7100:7100
     depends_on: 
       - listings-service-db
     volumes:
@@ -17,6 +21,10 @@ services:
 
   users-service:
     build: "./users-service"
+    environment:
+      - DB_URI=mysql://root:password@users-service-db/db?charset=UTF8
+    ports:
+      - 0.0.0.0:7101:7101
     depends_on: 
       - users-service-db
     volumes:
